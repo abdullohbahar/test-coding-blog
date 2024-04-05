@@ -23,7 +23,7 @@ Route::get('/', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticate'])->name('auth')->middleware('guest');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('/dashboard', [DashboardAdminController::class, 'index'])->name('admin.dashboard');
 
     Route::prefix('post')->group(function () {
@@ -46,7 +46,7 @@ Route::prefix('admin')->group(function () {
 });
 
 
-Route::prefix('author')->group(function () {
+Route::prefix('author')->middleware('author')->group(function () {
     Route::get('/dashboard', [DashboardAuthorController::class, 'index'])->name('author.dashboard');
 
     Route::prefix('post')->group(function () {
