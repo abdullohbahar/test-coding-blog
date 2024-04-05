@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\PostAdminController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,5 +35,14 @@ Route::prefix('admin')->group(function () {
         Route::get('/edit/{id}', [PostAdminController::class, 'edit'])->name('admin.edit.post');
         Route::put('/update/{id}', [PostAdminController::class, 'update'])->name('admin.update.post');
         Route::delete('/destroy/{id}', [PostAdminController::class, 'destroy'])->name('admin.destroy.post');
+    });
+
+    Route::prefix('user')->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('admin.user');
+        Route::get('/create', [UserController::class, 'create'])->name('admin.create.user');
+        Route::post('/store', [UserController::class, 'store'])->name('admin.store.user');
+        Route::get('/edit/{username}', [UserController::class, 'edit'])->name('admin.edit.user');
+        Route::put('/update/{username}', [UserController::class, 'update'])->name('admin.update.user');
+        Route::delete('/destroy/{id}', [UserController::class, 'destroy'])->name('admin.destroy.user');
     });
 });

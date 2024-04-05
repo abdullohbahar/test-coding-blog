@@ -79,6 +79,10 @@
                             <a class="nav-link" href="{{ route('admin.post') }}"><i class="fas fa-chart-pie"></i>
                                 <span>Post</span></a>
                         </li>
+                        <li class="nav-item {{ $active == 'user' ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('admin.user') }}"><i class="fas fa-users"></i>
+                                <span>User</span></a>
+                        </li>
                     </ul>
                 </aside>
             </div>
