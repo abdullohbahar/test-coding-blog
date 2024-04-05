@@ -49,12 +49,9 @@
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <form action="{{ route('logout') }}" method="POST">
-                                @csrf
-                                <button type="submit" class="dropdown-item has-icon text-danger">
-                                    <i class="fas fa-sign-out-alt mt-2"></i> Logout
-                                </button>
-                            </form>
+                            <a href="{{ route('logout') }}" type="submit" class="dropdown-item has-icon text-danger">
+                                <i class="fas fa-sign-out-alt mt-2"></i> Logout
+                            </a>
                         </div>
                     </li>
                 </ul>
