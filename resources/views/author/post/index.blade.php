@@ -1,7 +1,7 @@
-@extends('admin.layout.app')
+@extends('author.layout.app')
 
 @section('title')
-    Post - Admin
+    Post
 @endsection
 
 @push('addons-css')
@@ -27,7 +27,7 @@
                     <div class="col-12 col-md-12 col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <a href="{{ route('admin.create.post') }}" class="btn btn-info">Buat Postingan</a>
+                                <a href="{{ route('author.create.post') }}" class="btn btn-info">Buat Postingan</a>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -59,7 +59,7 @@
                                                             <td>
                                                                 <div class="btn-group" role="group"
                                                                     aria-label="Basic example">
-                                                                    <a href="{{ route('admin.edit.post', $post->idpost) }}"
+                                                                    <a href="{{ route('author.edit.post', $post->idpost) }}"
                                                                         type="button" class="btn btn-warning">Edit</a>
                                                                     <button id="delete" data-id="{{ $post->idpost }}"
                                                                         type="button" class="btn btn-danger">Hapus</button>

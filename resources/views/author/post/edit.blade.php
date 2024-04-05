@@ -1,7 +1,7 @@
-@extends('admin.layout.app')
+@extends('author.layout.app')
 
 @section('title')
-    Tambah Post - Admin
+    Edit Post
 @endsection
 
 @push('addons-css')
@@ -24,14 +24,15 @@
                                 <a href="{{ route('admin.post') }}" class="btn btn-warning">Kembali</a>
                             </div>
                             <div class="card-body">
-                                <form action="{{ route('admin.store.post') }}" method="POST">
+                                <form action="{{ route('admin.update.post', $post->idpost) }}" method="POST">
                                     @csrf
+                                    @method('PUT')
                                     <div class="row">
                                         <div class="col-12">
                                             <label for="">Judul</label>
                                             <input type="text" name="title"
                                                 class="form-control @error('title') is-invalid @enderror"
-                                                value="{{ old('title') }}" id="" required>
+                                                value="{{ old('title', $post->title) }}" id="" required>
                                             @error('title')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -40,7 +41,7 @@
                                         </div>
                                         <div class="col-12">
                                             <label for="">Konten</label>
-                                            <textarea name="content" id="content" required>{{ old('content') }}</textarea>
+                                            <textarea name="content" id="content" required>{{ old('content', $post->content) }}</textarea>
                                             @error('content')
                                                 <span style="color: red">
                                                     {{ $message }}
@@ -50,7 +51,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-12 mt-3">
-                                            <button type="submit" class="btn btn-success">Simpan</button>
+                                            <button type="submit" class="btn btn-success">Ubah</button>
                                         </div>
                                     </div>
                                 </form>

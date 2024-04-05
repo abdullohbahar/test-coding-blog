@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('author.layout.app')
 
 @section('title')
     Dashboard

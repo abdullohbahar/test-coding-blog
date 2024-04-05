@@ -49,12 +49,9 @@
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <form action="{{ route('logout') }}" method="POST">
-                                @csrf
-                                <button type="submit" class="dropdown-item has-icon text-danger">
+                                <a href="{{ route('logout') }}" type="submit" class="dropdown-item has-icon text-danger">
                                     <i class="fas fa-sign-out-alt mt-2"></i> Logout
-                                </button>
-                            </form>
+                                </a>
                         </div>
                     </li>
                 </ul>
@@ -79,10 +76,15 @@
                             <a class="nav-link" href="{{ route('admin.post') }}"><i class="fas fa-chart-pie"></i>
                                 <span>Post</span></a>
                         </li>
-                        <li class="nav-item {{ $active == 'user' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('admin.user') }}"><i class="fas fa-users"></i>
-                                <span>User</span></a>
-                        </li>
+                        <?php
+                        $user = session('user');
+                        ?>
+                        @if ($user->role == 'admin')
+                            <li class="nav-item {{ $active == 'user' ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('admin.user') }}"><i class="fas fa-users"></i>
+                                    <span>User</span></a>
+                            </li>
+                        @endif
                     </ul>
                 </aside>
             </div>

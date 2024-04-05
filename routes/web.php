@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\PostAdminController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Author\DashboardAuthorController;
+use App\Http\Controllers\Author\PostAuthorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,12 +19,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('login', [AuthController::class, 'index'])->name('login');
-Route::post('/login', [AuthController::class, 'authenticate'])->name('login')->middleware('guest');
+Route::get('/', [AuthController::class, 'index'])->name('login');
+Route::post('/login', [AuthController::class, 'authenticate'])->name('auth')->middleware('guest');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
 Route::prefix('admin')->group(function () {
@@ -44,5 +42,19 @@ Route::prefix('admin')->group(function () {
         Route::get('/edit/{username}', [UserController::class, 'edit'])->name('admin.edit.user');
         Route::put('/update/{username}', [UserController::class, 'update'])->name('admin.update.user');
         Route::delete('/destroy/{id}', [UserController::class, 'destroy'])->name('admin.destroy.user');
+    });
+});
+
+
+Route::prefix('author')->group(function () {
+    Route::get('/dashboard', [DashboardAuthorController::class, 'index'])->name('author.dashboard');
+
+    Route::prefix('post')->group(function () {
+        Route::get('/', [PostAuthorController::class, 'index'])->name('author.post');
+        Route::get('/create', [PostAuthorController::class, 'create'])->name('author.create.post');
+        Route::post('/store', [PostAuthorController::class, 'store'])->name('author.store.post');
+        Route::get('/edit/{id}', [PostAuthorController::class, 'edit'])->name('author.edit.post');
+        Route::put('/update/{id}', [PostAuthorController::class, 'update'])->name('author.update.post');
+        Route::delete('/destroy/{id}', [PostAuthorController::class, 'destroy'])->name('author.destroy.post');
     });
 });

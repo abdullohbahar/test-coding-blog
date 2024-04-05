@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('author.layout.app')
 
 @section('title')
     Tambah Post - Admin
@@ -21,10 +21,10 @@
                     <div class="col-12 col-md-12 col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <a href="{{ route('admin.post') }}" class="btn btn-warning">Kembali</a>
+                                <a href="{{ route('author.post') }}" class="btn btn-warning">Kembali</a>
                             </div>
                             <div class="card-body">
-                                <form action="{{ route('admin.store.post') }}" method="POST">
+                                <form action="{{ route('author.store.post') }}" method="POST">
                                     @csrf
                                     <div class="row">
                                         <div class="col-12">
