@@ -31,6 +31,8 @@ class AuthController extends Controller
         if (Auth::attempt($auth)) {
             $request->session()->regenerate();
 
+            session(['user' => auth()->user()]);
+
             switch (Auth::user()->role) {
                 case 'author':
                     return redirect()->route('author.dashboard');
