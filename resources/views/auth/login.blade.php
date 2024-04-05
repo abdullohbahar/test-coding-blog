@@ -36,9 +36,9 @@
                             <div class="card-body">
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf
-                                    @if (session('message'))
+                                    @if (session('error'))
                                         <div class="alert alert-danger">
-                                            {{ session('message') }}
+                                            {{ session('error') }}
                                         </div>
                                     @endif
                                     <div class="form-group">

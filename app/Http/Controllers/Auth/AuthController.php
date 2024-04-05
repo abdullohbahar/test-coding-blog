@@ -32,8 +32,8 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             switch (Auth::user()->role) {
-                case 'member':
-                    return redirect()->route('member.dashboard');
+                case 'author':
+                    return redirect()->route('author.dashboard');
                     break;
                 case 'admin':
                     return redirect()->route('admin.dashboard');
@@ -47,5 +47,16 @@ class AuthController extends Controller
             'error' =>  'username atau password salah',
             'username' => $request->username
         ]);
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login')->with('success', 'Logout Successfully');
     }
 }
